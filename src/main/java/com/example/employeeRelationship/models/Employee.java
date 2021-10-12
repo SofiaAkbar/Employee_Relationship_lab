@@ -87,6 +87,10 @@ public class Employee {
         this.employeeNumber = employeeNumber;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
     public void addProject(Project project){
         this.projects.add(project);
     }
