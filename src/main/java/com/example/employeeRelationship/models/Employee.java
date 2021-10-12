@@ -26,6 +26,11 @@ public class Employee {
     @Column(name="employee_number")
     private String employeeNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    @JsonIgnoreProperties({"employees"})
+    private Department department;
+
     @ManyToMany
     @JsonIgnoreProperties({"employees"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -45,10 +50,11 @@ public class Employee {
     private List<Project> projects;
 
 
-    public Employee(String firstName, String lastName, String employeeNumber) {
+    public Employee(String firstName, String lastName, String employeeNumber, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeNumber = employeeNumber;
+        this.department = department;
         this.projects = new ArrayList<>();
     }
 
@@ -85,6 +91,14 @@ public class Employee {
 
     public void setEmployeeNumber(String employeeNumber) {
         this.employeeNumber = employeeNumber;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public List<Project> getProjects() {

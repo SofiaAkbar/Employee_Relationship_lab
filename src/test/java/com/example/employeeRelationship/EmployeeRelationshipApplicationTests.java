@@ -1,7 +1,8 @@
 package com.example.employeeRelationship;
 
+import com.example.employeeRelationship.models.Department;
 import com.example.employeeRelationship.models.Employee;
-import com.example.employeeRelationship.models.Project;
+import com.example.employeeRelationship.repositories.DepartmentRepository;
 import com.example.employeeRelationship.repositories.EmployeeRepository;
 import com.example.employeeRelationship.repositories.ProjectRepository;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,8 @@ class EmployeeserviceApplicationTests {
 	EmployeeRepository employeeRepository;
 	@Autowired
 	ProjectRepository projectRepository;
+	@Autowired
+	DepartmentRepository departmentRepository;
 
 //	@Before
 //	public void before(){
@@ -34,12 +37,14 @@ class EmployeeserviceApplicationTests {
 
 	@Test
 	public void createEmployee(){
-		Employee john = new Employee("John", "Smith", "2079452");
+		Department chill = new Department("chill");
+		Employee john = new Employee("John", "Smith", "2079452", chill);
+		departmentRepository.save(chill);
 		employeeRepository.save(john);
 	}
 
-	@Test
-	public void createProject(){}
+//	@Test
+//	public void createProject(){}
 
 //	@Test
 //	public void testStuff(){
